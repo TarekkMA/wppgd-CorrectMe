@@ -1,0 +1,24 @@
+{
+	"manifest_version": 2,
+	"name": "wppgd - Correct Me",
+	"version": "0.1",
+	"permissions": [
+		"contextMenus", "notifications"
+	],
+	"background": {
+		"scripts": ["background.js"]
+	},
+	"content_scripts": [{
+		"matches": [
+			"http://*/*",
+			"https://*/*"
+		],
+		"js": ["content.js"],
+		"run_at": "document_end" // pay attention to this line
+	}],
+	"icons": {
+		"16": "wppgd-16.png",
+		"48": "wppgd-48.png",
+		"128": "wppgd-128.png"
+	}
+}
