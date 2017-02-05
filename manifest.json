@@ -13,8 +13,10 @@
 			"http://*/*",
 			"https://*/*"
 		],
+		"css": ["contentscript.css"],
 		"js": ["content.js"],
-		"run_at": "document_end" // pay attention to this line
+		"run_at": "document_end",
+     	"all_frames": true
 	}],
 	"icons": {
 		"16": "wppgd-16.png",

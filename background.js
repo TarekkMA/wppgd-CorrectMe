@@ -1,6 +1,10 @@
 var ar = "ذضصثقفغعهخحجدشسيبلاتنمكطئءؤرﻻىةوزظ";
 var en = "`qwertyuiop[]asdfghjkl;'zxcvbnm,./";
 
+function sendNotification(title, body) {
+
+}
+
 function isAr(str) {
 	var arC = 0,
 		enC = 0;
@@ -25,10 +29,13 @@ function copyToClipboard(str) {
 	document.execCommand("Copy", false, null);
 }
 
-function replaceSelectedText(str,tab) {
-	chrome.tabs.sendRequest(tab.id, { method: "replaceText",replacementText:str}, function(response) {
-      console.log(response.data);
-    });
+function replaceSelectedText(str, tab) {
+	chrome.tabs.sendRequest(tab.id, {
+		method: "replaceText",
+		replacementText: str
+	}, function(response) {
+		console.log(response.data);
+	});
 
 }
 
@@ -61,11 +68,20 @@ function convertStr(str) {
 
 
 function correctMe(info, tab) {
+	var before = info.selectionText;
+	var after = convertStr(info.selectionText);
 	if (info.editable) {
-		replaceSelectedText(convertStr(info.selectionText),tab);
+		//replaceSelectedText(after, tab);
 	} else {
-		copyToClipboard(convertStr(info.selectionText));
+		copyToClipboard(after);
 	}
+
+	chrome.tabs.sendRequest(tab.id, {
+		method: "showBubble",
+		afterText: after,
+		beforeText:before
+	});
+
 }
 
 chrome.contextMenus.create({
