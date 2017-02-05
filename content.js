@@ -13,7 +13,7 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 				range = sel.getRangeAt(0);
 				rect = range.getBoundingClientRect();
 				console.log(rect);
-				renderBubble(rect.left, rect.top + window.pageYOffset , request.afterText);
+				renderBubble(rect.left, rect.top + window.pageYOffset - 25 , request.afterText);
 				//range.deleteContents();
 				//range.insertNode(document.createTextNode(request.text));
 			}
@@ -35,7 +35,7 @@ function renderBubble(mouseX, mouseY, selection) {
 //Close the bubble when we click outside the bubble.
 document.addEventListener('mousedown', function(e) {
 	if (bubbleDOM.contains(e.target) == false) {
-		//bubbleDOM.style.visibility = 'hidden';
+		bubbleDOM.style.visibility = 'hidden';
 	}
 }, false);
 
