@@ -70,6 +70,6 @@ function correctMe(info, tab) {
 
 chrome.contextMenus.create({
 	title: "wppgd - CorrectMe",
-	contexts: ["selection", "editable"],
+	contexts: ["selection"],
 	onclick: correctMe,
 });
